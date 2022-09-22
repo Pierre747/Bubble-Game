@@ -1,0 +1,70 @@
+/* Imports */
+
+@font-face {
+	font-family: 'doom';
+	src: url('./assets/fonts/AmazDooMLeft.ttf');
+}
+
+@font-face {
+	font-family: 'counter';
+	src: url('./assets/fonts/Drugsther.otf');
+}
+
+/* Réglages généraux */
+
+body {
+	overflow: hidden;
+	min-height: 100vh;
+	cursor: crosshair;
+}
+
+/* Style spécifique */
+
+.bubble {
+	position: absolute;
+	border-radius: 300px;
+	background: rgba(255, 166, 0, 0.6);
+	opacity: 0;
+	animation: anim 8s forwards;
+	filter: hue-rotate(0deg);
+}
+
+@keyframes anim {
+	to {
+		top: -250px;
+		left: var(--left);
+		opacity: 1;
+		filter: hue-rotate(720deg);
+	}
+}
+
+h1 {
+	font-family: 'doom', sans-serif;
+	text-align: center;
+	letter-spacing: 5px;
+	width: 100%;
+	height: 80vh;
+	font-size: 10rem;
+}
+
+h3 {
+	font-family: 'counter', sans-serif;
+	font-size: 8rem;
+	text-align: center;
+	margin-top: 20px;
+	color: lightgray;
+	transition: all 0.4s;
+
+	visibility: hidden;
+
+	/* Pour éviter que mon h3 ne soit sélectionnable */
+	-webkit-user-select: none; /* Safari */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+}
+
+/* Une classe pour ne rendre visible le counter que lorsque je réalise un kill */
+.visible {
+	visibility: visible;
+}
