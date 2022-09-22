@@ -1,18 +1,21 @@
-const counterDisplay = document.querySelector('h3');
-let counter = 0;
+//! Import des fichiers audio
+const prepare = new Audio('./assets/sounds/prepare.mp3');
+prepare.play();
 
-const pop = new Audio('./assets/sound/pop.mp3');
+const pop = new Audio('./assets/sounds/pop.mp3');
+const firstblood = new Audio('./assets/sounds/firstblood.mp3');
+const headshot = new Audio('./assets/sounds/headshot.mp3');
+const killingspree = new Audio('./assets/sounds/killingspree.mp3');
+const level2 = new Audio('./assets/sounds/level2.mp3');
 
 const title = document.querySelector('h1');
 setTimeout(() => {
 	title.style.display = 'none';
 }, 3000);
 
-if (counter === '20') {
-	setTimeout(() => {
-		title.textContent = "You're good !!! 👍🏻👍🏻";
-	}, 2000);
-}
+const counterDisplay = document.querySelector('h3');
+let counter = 0;
+//! Application de jeu
 
 const bubbleMaker = () => {
 	const bubble = document.createElement('span');
@@ -47,6 +50,52 @@ const bubbleMaker = () => {
 	setTimeout(() => {
 		bubble.remove();
 	}, 8000);
+
+	//! Gestion des scores et interractions
+
+	switch (counter) {
+		case 5:
+			firstblood.play();
+			title.innerText = '5 points !';
+			title.style.display = 'block';
+			title.style.fontFamily = 'counter';
+			setTimeout(() => {
+				title.style.display = 'none';
+			}, 1500);
+			break;
+
+		case 10:
+			headshot.play();
+			title.innerText = '10 points !';
+			title.style.display = 'block';
+			title.style.fontFamily = 'counter';
+			setTimeout(() => {
+				title.style.display = 'none';
+			}, 1500);
+			break;
+
+		case 20:
+			killingspree.play();
+			title.innerText = '20 points !';
+			title.style.display = 'block';
+			title.style.fontFamily = 'counter';
+			setTimeout(() => {
+				title.style.display = 'none';
+			}, 1500);
+			break;
+
+		case 30:
+			level2.play();
+			title.innerText = 'Level 2';
+			title.style.color = 'red';
+			title.style.display = 'block';
+			title.style.fontFamily = 'counter';
+			setTimeout(() => {
+				title.style.display = 'none';
+			}, 2000);
+			bubble.style.animation = 'anim 5s forwards';
+			break;
+	}
 };
 
 setInterval(bubbleMaker, 1000);
